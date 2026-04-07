@@ -1,15 +1,14 @@
 ﻿CREATE TABLE IF NOT EXISTS tasks (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  status TEXT NOT NULL
+  name VARCHAR(100) NOT NULL,
+  status VARCHAR(50) NOT NULL
 );
 
 INSERT INTO tasks (name, status) VALUES
   ('Buy groceries', 'pending'),
-  ('Read book', 'completed'),
-  ('Exercise', 'pending'),
-  ('Cook dinner', 'pending'),
-  ('Call mom', 'completed'),
-  ('Clean house', 'pending'),
-  ('Tea', 'pending');
-  
+  ('Read a book', 'completed'),
+  ('Go for a run', 'pending'),
+  ('Write report', 'in-progress'),
+  ('Call dentist', 'pending'),
+  ('Fix bike', 'completed')
+ON CONFLICT DO NOTHING;
