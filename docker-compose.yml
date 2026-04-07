@@ -1,0 +1,29 @@
+services:
+  app:
+    build: .
+    image: hind7065/lab8-app:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://taskuser:taskpass@db:5432/taskdb
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=taskuser
+      - POSTGRES_PASSWORD=taskpass
+      - POSTGRES_DB=taskdb
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U taskuser -d taskdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:
