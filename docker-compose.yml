@@ -26,4 +26,4 @@
       retries: 5
 
 volumes:
-  pgdata:
+  pgdata: 

@@ -12,3 +12,4 @@ INSERT INTO tasks (name, status) VALUES
   ('Call mom', 'completed'),
   ('Clean house', 'pending'),
   ('Tea', 'pending');
+  

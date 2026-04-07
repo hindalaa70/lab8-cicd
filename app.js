@@ -27,6 +27,6 @@ app.post('/tasks', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-});
+});  
 
 app.listen(3000, () => console.log('Server running on port 3000'));
