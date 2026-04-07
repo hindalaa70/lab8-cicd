@@ -16,7 +16,7 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.hind7065 }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push Docker image
@@ -24,7 +24,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.hind7065 }}/lab8-app:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/lab8-app:latest
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
