@@ -14,17 +14,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Log in to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u hind7065 --password-stdin
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: hind7065/lab8-app:latest
+      - name: Build Docker image
+        run: docker build -t hind7065/lab8-app:latest .
+
+      - name: Push Docker image
+        run: docker push hind7065/lab8-app:latest
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
