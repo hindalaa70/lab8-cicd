@@ -1,4 +1,4 @@
-services:
+﻿services:
   app:
     build: .
     image: hind7065/lab8-app:latest
